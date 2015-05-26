@@ -18,12 +18,18 @@ type FoodRecord struct {
   }
 }
 
-func getFood() (string, error) {
+func getFood() (*FoodRecord, error) {
   x, err := getApiKey()
   if err != nil {
     panic(err)
   }
-  return x, err
+  content, err := getContent("https://maps.googleapis.com/maps/api/place/nearbysearch/json?location=42.742135,-84.570538&radius=3219&types=restaurant&key="+x)
+  var record FoodRecord
+  err = json.Unmarshal(content, &record)
+  if err != nil {
+    return nil, err
+  }
+  return &record, err
 }
 
 func getApiKey() (string, error) {

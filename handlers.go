@@ -70,5 +70,6 @@ func GetFood(w http.ResponseWriter, r *http.Request) {
   w.Header().Set("Content-Type", "text/html; charset=UTF-8")
   w.WriteHeader(http.StatusOK)
 
-  fmt.Fprintf(w, "Test: %s", x)
+  fmt.Fprintf(w, "<h2>You will eat at: %s!</h2>", x.Results[rand.Intn(len(x.Results))].Name)
+  fmt.Fprintf(w, "<br><strong>THE MICROSERVICE HAS SPOKEN!</strong>")
 }
