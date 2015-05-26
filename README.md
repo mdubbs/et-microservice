@@ -14,16 +14,21 @@ Just run `go run`, or `go build` and then `./et` or `et.exe`, the service can be
 Route                             Action
 -------                           --------
 /                                 Returns "Welcome!" (text/html)
-/food                             Returns a restaurant within the specified radius of your location (text/html)
+
+/food                             Returns a restaurant within the specified radius of your
+                                  location (text/html)
+
 /tim/mood                         Returns Tim's mood
+
 /weather/{ZIP CODE}               Returns that ZIP's weather (text/html)
+
 /weather/{ZIP CODE}?format=json   Returns that ZIP's weather (json)
 ```
 ### Using Google Places API
 
 To use the Food endpoint you will need to create a `places.json` file and add the following while substituting in your own Google Places API key (string), specified radius in meters (int), location latitude (string) and logitude (string).
 
-```
+```json
 {
   "apikey": "YOUR-PLACES-API-KEY-HERE",
   "radius": DISTANCE_INT,
