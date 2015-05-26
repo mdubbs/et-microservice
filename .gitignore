@@ -23,4 +23,6 @@ _testmain.go
 *.test
 *.prof
 
+# Hide API keys and stuff
 keys.json
+places.json

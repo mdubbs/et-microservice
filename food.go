@@ -1,15 +1,17 @@
 package main
 
 import (
-  //"net/http"
-  //"io/ioutil"
   "encoding/json"
   "os"
   "log"
+  "strconv"
 )
 
-type PlacesApiKey struct {
-  Places string
+type PlacesConfig struct {
+  ApiKey string
+  Radius int
+  Latitude string
+  Longitude string
 }
 
 type FoodRecord struct {
@@ -19,11 +21,17 @@ type FoodRecord struct {
 }
 
 func getFood() (*FoodRecord, error) {
-  x, err := getApiKey()
+  config, err := getConfig()
   if err != nil {
     panic(err)
   }
-  content, err := getContent("https://maps.googleapis.com/maps/api/place/nearbysearch/json?location=42.742135,-84.570538&radius=3219&types=restaurant&key="+x)
+
+  key := config.ApiKey
+  rad := strconv.Itoa(config.Radius)
+  lati := config.Latitude
+  longi := config.Longitude
+
+  content, err := getContent("https://maps.googleapis.com/maps/api/place/nearbysearch/json?location="+lati+","+longi+"&radius="+rad+"&types=restaurant&key="+key)
   var record FoodRecord
   err = json.Unmarshal(content, &record)
   if err != nil {
@@ -32,14 +40,15 @@ func getFood() (*FoodRecord, error) {
   return &record, err
 }
 
-func getApiKey() (string, error) {
-  file, _ := os.Open("keys.json")
+func getConfig() (*PlacesConfig, error) {
+  file, _ := os.Open("places.json")
   decoder := json.NewDecoder(file)
-  placesApiKey := PlacesApiKey{}
-  err := decoder.Decode(&placesApiKey)
+  placesConfig := PlacesConfig{}
+  err := decoder.Decode(&placesConfig)
+
   if err != nil {
     log.Printf("ERROR\t%s", err)
     panic(err)
   }
-  return placesApiKey.Places, err
+  return &placesConfig, err
 }

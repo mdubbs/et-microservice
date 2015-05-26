@@ -6,6 +6,7 @@ import (
   "net/http"
   "encoding/json"
   "math/rand"
+  "strings"
 
   "github.com/gorilla/mux"
 )
@@ -47,7 +48,7 @@ func GetWeather(w http.ResponseWriter, r *http.Request) {
 
     format := r.URL.Query().Get("format")
 
-    if format == "json" {
+    if strings.ToLower(format) == "json" {
       w.Header().Set("Content-Type", "application/json")
       w.WriteHeader(http.StatusOK)
       json.NewEncoder(w).Encode(content)
