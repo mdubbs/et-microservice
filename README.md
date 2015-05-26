@@ -8,6 +8,6 @@ To use the Food endpoint you will need to create a `keys.json` file and add the 
 
 ```
 {
-"places": "YOUR-PLACES-API-KEY-HERE"
+  "places": "YOUR-PLACES-API-KEY-HERE"
 }
 ```
