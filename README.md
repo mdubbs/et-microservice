@@ -30,10 +30,10 @@ To use the Food endpoint you will need to create a `places.json` file and add th
 
 ```json
 {
-  "apikey": "YOUR-PLACES-API-KEY-HERE",
-  "radius": DISTANCE_INT,
-  "latitude": "YOUR-LOCATION-LATITUDE",
-  "longitude": "YOUR-LOCATION-LONGITUDE"
+  "apikey":     "YOUR-PLACES-API-KEY-HERE",
+  "radius":     "DISTANCE_INT",
+  "latitude":   "YOUR-LOCATION-LATITUDE",
+  "longitude":  "YOUR-LOCATION-LONGITUDE"
 }
 ```
 ### To-Do
