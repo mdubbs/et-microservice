@@ -7,7 +7,7 @@ The greatest of all the ET microservices
 * Uses the OpenWeatherMap API as well as Google's Places API
 
 ### Using the service
-Just run `go run`, or `go build` and then `./et` or `et.exe`, the service can be reached at `http://localhost:8080`
+Just run `go run`, or `go build` and then `./et-microservice` or `et-microservice.exe`, the service can be reached at `http://localhost:8080`
 
 ### Endpoints
 ```
