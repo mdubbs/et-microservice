@@ -26,7 +26,7 @@ Route                             Action
 ```
 ### Using Google Places API
 
-To use the Food endpoint you will need to create a `places.json` file and add the following while substituting in your own Google Places API key (string), specified radius in meters (int), location latitude (string) and logitude (string).
+To use the Food endpoint you will need to create a `places.json` file in the `/config` folder (or update the existing dummy file and rename to `places.json`) and add the following while substituting in your own Google Places API key (string), specified radius in meters (int), location latitude (string) and logitude (string).
 
 ```json
 {
