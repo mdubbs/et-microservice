@@ -1,10 +1,9 @@
-package main
+package weather
 
 import (
   "fmt"
-  "net/http"
-  "io/ioutil"
   "encoding/json"
+  "github.com/mdubbs/et-microservice/rest"
 )
 
 type WeatherRecord struct {
@@ -25,7 +24,7 @@ type WeatherRecord struct {
 }
 
 func GetWeatherRecord(zip string) (*WeatherRecord, error) {
-  content, err := getContent(fmt.Sprintf("http://api.openweathermap.org/data/2.5/weather?zip=%s,us", zip))
+  content, err := rest.GetContent(fmt.Sprintf("http://api.openweathermap.org/data/2.5/weather?zip=%s,us", zip))
   if err != nil {
     return nil, err
   }
@@ -36,28 +35,4 @@ func GetWeatherRecord(zip string) (*WeatherRecord, error) {
     return nil, err
   }
   return &record, err
-}
-
-func getContent(url string) ([]byte, error) {
-  req, err := http.NewRequest("GET", url, nil)
-  if err != nil {
-    return nil, err
-  }
-
-  //send request
-  client := &http.Client{}
-  resp, err := client.Do(req)
-  if err != nil {
-    return nil, err
-  }
-
-  //defer closing
-  defer resp.Body.Close()
-  //read content
-  body, err := ioutil.ReadAll(resp.Body)
-  if err != nil {
-    return nil, err
-  }
-
-  return body, nil
 }

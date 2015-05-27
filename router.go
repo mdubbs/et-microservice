@@ -3,6 +3,7 @@ package main
 import (
   "net/http"
   "github.com/gorilla/mux"
+  "github.com/mdubbs/et-microservice/logger"
 )
 
 func NewRouter() *mux.Router {
@@ -12,7 +13,7 @@ func NewRouter() *mux.Router {
         var handler http.Handler
 
         handler = route.HandlerFunc
-        handler = Logger(handler, route.Name)
+        handler = logger.Logger(handler, route.Name)
 
         router.
             Methods(route.Method).

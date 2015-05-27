@@ -38,6 +38,8 @@ To use the Food endpoint you will need to create a `places.json` file and add th
 ```
 ### To-Do
 - [ ] Refactor (types, etc) big time!
+  - [X] Break somethings into their own packages
+  - [ ] Break up the handlers function somehow
 - [ ] Add in NoSQL support for keeping track of places you like and don't like
   - [ ] Add ability to share a food pick with a link
   - [ ] MongoDB, hip enough?

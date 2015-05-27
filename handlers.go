@@ -9,6 +9,8 @@ import (
   "strings"
 
   "github.com/gorilla/mux"
+  "github.com/mdubbs/et-microservice/weather"
+  "github.com/mdubbs/et-microservice/food"
 )
 
 func Index(w http.ResponseWriter, r *http.Request) {
@@ -36,7 +38,7 @@ func Tim(w http.ResponseWriter, r *http.Request) {
 func GetWeather(w http.ResponseWriter, r *http.Request) {
   vars := mux.Vars(r)
 
-  content, err := GetWeatherRecord(vars["zip"])
+  content, err := weather.GetWeatherRecord(vars["zip"])
   if err != nil {
     log.Fatal(err)
     json.NewEncoder(w).Encode("Error! Sorry bro!")
@@ -62,7 +64,7 @@ func GetWeather(w http.ResponseWriter, r *http.Request) {
 }
 
 func GetFood(w http.ResponseWriter, r *http.Request) {
-  x, err := getFood()
+  x, err := food.GetFoodRecord()
 
   if err != nil {
     panic(err)
