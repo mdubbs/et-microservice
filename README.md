@@ -5,6 +5,7 @@ The greatest of all the ET microservices
 
 * Written in Go, for some reason..
 * Uses the OpenWeatherMap API as well as Google's Places API
+* Uses BoltDB for a lightweight key/value store
 
 ### Using the service
 Just run `go run`, or `go build` and then `./et-microservice` or `et-microservice.exe`, the service can be reached at `http://localhost:8080`
@@ -42,5 +43,5 @@ To use the Food endpoint you will need to create a `places.json` file in the `/c
   - [ ] Break up the handlers function somehow
 - [ ] Add in NoSQL support for keeping track of places you like and don't like
   - [ ] Add ability to share a food pick with a link
-  - [ ] MongoDB, hip enough?
+  - [X] BoltDB
 - [ ] Add some useful endpoints

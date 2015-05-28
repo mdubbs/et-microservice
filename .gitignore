@@ -26,3 +26,4 @@ _testmain.go
 # Hide API keys and stuff
 keys.json
 places.json
+et.db

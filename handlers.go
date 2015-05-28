@@ -11,12 +11,30 @@ import (
   "github.com/gorilla/mux"
   "github.com/mdubbs/et-microservice/weather"
   "github.com/mdubbs/et-microservice/food"
+  "github.com/boltdb/bolt"
 )
 
 func Index(w http.ResponseWriter, r *http.Request) {
-  w.Header().Set("Content-Type", "text/html; charset=UTF-8")
-  w.WriteHeader(http.StatusOK)
-  fmt.Fprintln(w, "Welcome!")
+  db, err := bolt.Open("et.db", 0600, nil)
+  if err != nil {
+    log.Fatal(err)
+  }
+  defer db.Close()
+
+  db.Update(func(tx *bolt.Tx) error {
+    b := tx.Bucket([]byte("MyBucket"))
+    err := b.Put([]byte("answer"), []byte("42"))
+    return err
+  })
+
+  db.View(func(tx *bolt.Tx) error {
+    b := tx.Bucket([]byte("MyBucket"))
+    v := b.Get([]byte("answer"))
+    w.Header().Set("Content-Type", "text/html; charset=UTF-8")
+    w.WriteHeader(http.StatusOK)
+    fmt.Fprintln(w, "Welcome! ",string(v[:]))
+    return nil
+  })
 }
 
 func Tim(w http.ResponseWriter, r *http.Request) {
